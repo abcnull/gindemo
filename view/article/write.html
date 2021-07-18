@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>写文章</title>
+
+    <!-- jq 在线压缩版 -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <!--    <script src="https://github.com/jquery-form/form/blob/master/src/jquery.form.js"></script>-->
+
+    <!-- jq 自己写的前端校验逻辑 -->
+    <script src="/static/js/write.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+</head>
+<body style="background-color:#F5F5DC">
+
+{{template "nav.html" .}}
+
+<div id="main" class="container">
+    <form id="write-art-form" method="post" class="form-horizontal">
+        <input type="text" class="form-control hidden" name="id" id="id" value={{.article.Id}}>
+        <div class="form-group">
+            <label for="title" class="col-sm-2">标题：</label>
+            <div class="col-sm-pull-2">
+                <input type="text" class="form-control" name="title" id="title" placeholder="请输入标题..."
+                       value="{{.article.Title}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tags" class="col-sm-2">标签分类：</label>
+            <div class="col-sm-pull-2">
+                <input type="text" class="form-control" name="tags" id="tags" placeholder="请输入标签..."
+                       value="{{.article.Tags}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="short" class="col-sm-2">内容概述：</label>
+            <div class="col-sm-pull-2">
+                <textarea class="form-control" name="short" id="short" rows="2" placeholder="请输入内容概述...">{{.article.Short}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content" class="col-sm-2">文章内容：</label>
+            <div class="col-sm-pull-2">
+                <textarea class="form-control valid" name="content" id="content" rows="20" placeholder="请输入文章内容..."
+                          aria-invalid="false">{{.contentFormat}}</textarea>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="col-sm-offset-6">
+                <button type="submit" class="btn btn-primary" id="write-add-submit">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

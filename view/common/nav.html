@@ -1,0 +1,31 @@
+<div id="nav">
+    <div id="nav-home">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="/">首页</a></li>
+            <li role="presentation"><a href="/article">文章</a></li>
+            {{if .isLogin}}
+            <li role="presentation" class="pull-right">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        {{.username}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                        <li><a href="/aboutme">关于我</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li role="presentation">
+                            <a href='javascript:if(confirm("确定退出吗？")){location="/logout"}'>退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li role="presentation" class="pull-right"><a href="/article/add">写文章</a></li>
+            {{else}}
+            <li role="presentation" class="pull-right"><a href="/register">注册</a></li>
+            <li role="presentation" class="pull-right"><a href="/login">登录</a></li>
+            {{end}}
+        </ul>
+    </div>
+</div>

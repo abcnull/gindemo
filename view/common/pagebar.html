@@ -1,0 +1,9 @@
+<ul class="pager">
+    <li {{if .isFirstPage}} class="disabled" {{end}}><a {{if .isFirstPage}} {{else}}
+                                                        href='/article?page={{.prePageNum}}' {{end}}><span
+            class="glyphicon glyphicon-menu-left"></span>上一页</a></li>
+    <li class="disabled">第 {{.pageNum}} 页</li>
+    <li {{if .isLastPage}} class="disabled" {{end}}><a {{if .isLastPage}} {{else}} href='/article?page={{.nextPageNum}}'
+                                                       {{end}}>下一页<span
+            class="glyphicon glyphicon-menu-right"></span></a></li>
+</ul>
