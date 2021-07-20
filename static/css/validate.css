@@ -1,0 +1,12 @@
+input.error {
+    border: 1px solid red;
+}
+
+textarea.error {
+    border: 1px solid red;
+}
+
+label.error {
+    font-weight: bold;
+    color: red;
+}

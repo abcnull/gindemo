@@ -55,7 +55,7 @@ func RegisterPost(c *gin.Context) {
 	} else {
 		resp = gin.H{
 			"code":    0,
-			"message": "注册成功",
+			"message": "注册成功！请登录",
 		}
 	}
 	c.JSON(http.StatusOK, resp)

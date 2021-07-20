@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 // MakeArticleListTemplate 依据页码创建文章列表模版
@@ -19,8 +20,8 @@ func MakeArticleListTemplate(isLogin bool, pageNum int) template.HTML {
 	// 遍历文章切片
 	for _, article := range articles {
 		// 修改 article content 内容
-		if len(article.Content) > config.CHAR_PERARTICLE {
-			article.Content = article.Content[0:config.CHAR_PERARTICLE] + "..."
+		if utf8.RuneCountInString(article.Content) > config.CHAR_PERARTICLE {
+			article.Content = string([]rune(article.Content)[0:100]) + "..."
 		}
 		// 解析文件
 		t, _ := template.ParseFiles("view/article/article_list.html")

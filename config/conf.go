@@ -20,7 +20,7 @@ const DB_PWD = "123456"
 /*----------- 文章页面 article_list ------------*/
 
 // SIZE_PERPAGE 文章列表页面显示每页最大显示文章数
-const SIZE_PERPAGE = 4
+const SIZE_PERPAGE = 5
 
 // CHAR_PERARTICLE 文章列表页面每篇文章最大显示字符数量
-const CHAR_PERARTICLE = 400
+const CHAR_PERARTICLE = 500

@@ -5,7 +5,7 @@ $(document).ready(function () {
         rules: {
             username: {
                 required: true,
-                rangelength: [5, 10]
+                rangelength: [5, 10],
             },
             password: {
                 required: true,
@@ -16,11 +16,11 @@ $(document).ready(function () {
         messages: {
             username: {
                 required: "请输入用户名",
-                rangelength: "用户名必须是5-10位"
+                rangelength: "用户名必须是5-10位",
             },
             password: {
                 required: "请输入密码",
-                rangelength: "密码必须是5-10位"
+                rangelength: "密码必须是5-10位",
             }
         },
         // 提交表单数据

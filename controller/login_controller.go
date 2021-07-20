@@ -36,12 +36,12 @@ func LoginPost(c *gin.Context) {
 		s.Save()
 		resp = gin.H{
 			"code":    0,
-			"message": "登录成功",
+			"message": "登录成功，欢迎进入！",
 		}
 	} else {
 		resp = gin.H{
 			"code":    1,
-			"message": "用户名或密码错误",
+			"message": "用户名或密码错误！",
 		}
 	}
 	c.JSON(http.StatusOK, resp)

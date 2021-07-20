@@ -6,7 +6,6 @@
     <!-- jq 在线压缩版 -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <!--    <script src="https://github.com/jquery-form/form/blob/master/src/jquery.form.js"></script>-->
 
     <!-- jq 自己写的前端校验逻辑 -->
     <script src="/static/js/login.js"></script>
@@ -21,7 +20,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
             crossorigin="anonymous"></script>
+
+    <!-- css 文件引入 -->
+    <link rel="stylesheet" href="/static/css/validate.css">
 </head>
+
 <body style="background-color:#F5F5DC">
 <!--<div id="nav">-->
 <!--    <div id="nav-login">-->
@@ -34,22 +37,22 @@
 <!--</div>-->
 {{template "nav.html"}}
 
-<div class="htmleaf-container">
+<div class="htmleaf-container" style="transform: translateY(50%)">
     <div class="wrapper">
-        <div class="container">
+        <div class="container" style="background: lightgray">
             <div class="page-header text-center">
-                <h1>用户登录 <small>Welcome!</small></h1>
+                <h1>用户登录 <small>Login</small></h1>
             </div>
             <form class="form-horizontal" id="form">
                 <div class="form-group">
-                    <label for="username" class="col-sm-2 control-label">用户名</label>
-                    <div class="col-sm-10">
+                    <label for="username" class="col-md-2 col-md-push-2 control-label">用户名</label>
+                    <div class="col-md-4 col-md-push-2">
                         <input type="text" class="form-control" name="username" id="username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-10">
+                    <label for="password" class="col-sm-2 col-md-push-2 control-label">密码</label>
+                    <div class="col-sm-4 col-md-push-2">
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
                 </div>
@@ -63,7 +66,10 @@
                 <!--                    </div>-->
                 <!--                </div>-->
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-md-2 col-md-push-5">
+                        <button type="button" class="btn btn-default" id="cancel" onclick='history.back()'>返回</button>
+                    </div>
+                    <div class="col-md-2 col-md-push-4">
                         <button type="submit" class="btn btn-primary" id="button">登录</button>
                     </div>
                 </div>

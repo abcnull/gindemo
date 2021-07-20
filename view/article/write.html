@@ -22,6 +22,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
             crossorigin="anonymous"></script>
+
+    <!-- css 文件引入 -->
+    <link rel="stylesheet" href="/static/css/validate.css" >
 </head>
 <body style="background-color:#F5F5DC">
 
@@ -59,7 +62,10 @@
         </div>
         <br>
         <div class="form-group">
-            <div class="col-sm-offset-6">
+            <div class="col-md-2 col-md-push-5">
+                <button type="button" class="btn btn-default" id="write-back-btn" onclick="backSure()">返回</button>
+            </div>
+            <div class="col-md-2 col-md-push-4">
                 <button type="submit" class="btn btn-primary" id="write-add-submit">提交</button>
             </div>
         </div>
