@@ -3,14 +3,17 @@
         <div class="thumbnail">
             <div class="caption">
                 <h3><a href='/article/{{.Id}}'>{{.Title}}</a></h3>
-                <p>最后更新时间: {{.LastUpdateTime}}</p>
+                <p>{{.Tags}}</p>
+                <p>作者: {{.Author}} | 最后更新时间: {{.LastUpdateTime}}</p>
                 <p><a href='/article/{{.Id}}'>{{.Content}}</a></p>
                 {{if .isLogin}}
                 <div class="text-right">
                     <p>
-                        <a href='/article/update/{{.Id}}' class="btn btn-primary" role="button">编辑</a>
+                        <a href='/article/update/{{.Id}}' class="btn btn-primary" role="button"><span
+                                class="glyphicon glyphicon-edit"></span> 编辑</a>
                         <a href='javascript:if(confirm("确定删除吗？")){location="/article/delete/{{.Id}}"}'
-                           class="btn btn-danger float-right" role="button">删除</a>
+                           class="btn btn-danger float-right" role="button"><span
+                                class="glyphicon glyphicon-trash"></span>   删除</a>
                     </p>
                 </div>
                 {{end}}

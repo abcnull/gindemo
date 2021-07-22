@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"gindemo/database"
+	"gindemo/model"
 	"gindemo/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -8,8 +10,12 @@ import (
 
 // RegisterGet 注册页面
 func RegisterGet(c *gin.Context) {
+	// 拿到全部文章数量
+	artNum := model.QueryArticleCount(database.DB)
+
 	c.HTML(http.StatusOK, "register.html", gin.H{
-		"title": "注册页",
+		"title":  "注册页",
+		"artNum": artNum,
 	})
 }
 

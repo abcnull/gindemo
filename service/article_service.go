@@ -23,6 +23,8 @@ func MakeArticleListTemplate(isLogin bool, pageNum int) template.HTML {
 		if utf8.RuneCountInString(article.Content) > config.CHAR_PERARTICLE {
 			article.Content = string([]rune(article.Content)[0:100]) + "..."
 		}
+		// 更改 Tags
+		article.Tags = ChangeTags(article.Tags)
 		// 解析文件
 		t, _ := template.ParseFiles("view/article/article_list.html")
 		b := bytes.Buffer{}
@@ -30,7 +32,7 @@ func MakeArticleListTemplate(isLogin bool, pageNum int) template.HTML {
 		t.Execute(&b, map[string]interface{}{
 			"Id":             article.Id,
 			"Title":          article.Title,
-			"Tags":           article.Tags,
+			"Tags":           template.HTML(article.Tags),
 			"Short":          article.Short,
 			"Content":        article.Content,
 			"Author":         article.Author,
@@ -73,12 +75,39 @@ func MakePageBarArgs(pageNum int) map[string]interface{} {
 	return pageBarMap
 }
 
+// ChangeTags 将 Tags 修改成指定标签格式可被浏览器识别
+func ChangeTags(Tags string) string {
+	// 判定文章类型
+	switch Tags {
+	// 程序博客
+	case config.PROGRAM:
+		Tags = "<span class=\"label label-warning\">程序博客</span>"
+	// 金融理财
+	case config.FINANCE:
+		Tags = "<span class=\"label label-primary\">金融理财</span>"
+	// 自然科学
+	case config.SCIENCE:
+		Tags = "<span class=\"label label-success\">自然科学</span>"
+	// 音乐艺术
+	case config.ART:
+		Tags = "<span class=\"label label-info\">音乐艺术</span>"
+	// 体育竞技
+	case config.SPORT:
+		Tags = "<span class=\"label label-danger\">体育竞技</span>"
+	// 其他
+	default:
+		Tags = "<span class=\"label label-default\">其他</span>"
+	}
+	return Tags
+}
+
 // MakeSpecificArticleArgs 获取单篇文章界面中的参数信息
 func MakeSpecificArticleArgs(id int) (model.Article, string, string) {
 	// 根据 id 查数据库
 	article := model.QueryArticleWithId(database.DB, id)
 	createTime := time.Unix(article.CreateTime, 0).Format("2006-01-02 15:04:05")
 	lastUpdateTime := time.Unix(article.LastUpdateTime, 0).Format("2006-01-02 15:04:05")
+	article.Tags = ChangeTags(article.Tags)
 	return article, createTime, lastUpdateTime
 }
 
@@ -117,7 +146,6 @@ func UpdateArticleProcess(id int, args ...interface{}) (int64, error) {
 // AddArticleProcess 新增一片文章
 func AddArticleProcess(args ...interface{}) (int64, error) {
 	// 实例化 Article
-	article := model.Article{Title: args[0].(string), Tags: args[1].(string), Short: args[2].(string), Content: args[3].(string), Author: args[4].(string),
-		CreateTime: args[5].(int64), LastUpdateTime: args[6].(int64)}
+	article := model.Article{Title: args[0].(string), Author: args[1].(string), Tags: args[2].(string), Short: args[3].(string), Content: args[4].(string), CreateTime: args[5].(int64), LastUpdateTime: args[6].(int64)}
 	return model.InsertArticle(database.DB, article)
 }

@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"gindemo/database"
+	"gindemo/model"
 	"gindemo/service"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -9,9 +11,13 @@ import (
 
 // LoginGet 登录页面
 func LoginGet(c *gin.Context) {
+	// 拿到全部文章数量
+	artNum := model.QueryArticleCount(database.DB)
+
 	// 返回 html
 	resp := gin.H{
-		"title": "登录页",
+		"title":  "登录页",
+		"artNum": artNum,
 	}
 	c.HTML(http.StatusOK, "login.html", resp)
 }

@@ -73,8 +73,8 @@ func QueryArticleWithPage(DB *sql.DB, pageNum int) ([]Article, error) {
 		var createTime int64 = 0
 		var lastUpdateTime int64 = 0
 		rows.Scan(&id, &title, &author, &tags, &short, &content, &createTime, &lastUpdateTime)
-		articles = append(articles, Article{Id: id, Title: title, Short: short, Content: content, Author: author,
-			CreateTime: createTime, LastUpdateTime: lastUpdateTime})
+		articles = append(articles, Article{Id: id, Title: title, Author: author, Tags: tags, Short: short,
+			Content: content, CreateTime: createTime, LastUpdateTime: lastUpdateTime})
 	}
 	return articles, err
 }

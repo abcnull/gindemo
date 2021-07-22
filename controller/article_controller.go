@@ -19,6 +19,8 @@ func ArticleGet(c *gin.Context) {
 	pageNum, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	// 判断是否登录
 	isLogin := IsSessionExist(c)
+	// 拿到全部文章数量
+	artNum := model.QueryArticleCount(database.DB)
 
 	// 文章列表模版
 	listContent := service.MakeArticleListTemplate(isLogin, pageNum)
@@ -30,6 +32,8 @@ func ArticleGet(c *gin.Context) {
 		// 是否登录
 		"isLogin":  isLogin,
 		"username": GetSession(c, "loginUser"),
+		// 文章数量
+		"artNum": artNum,
 		// 文章列表
 		"listContent": listContent,
 		// 页码
@@ -68,6 +72,8 @@ func SpecificArticleGet(c *gin.Context) {
 	idStr := c.Param("id")
 	// 判断登录
 	isLogin := IsSessionExist(c)
+	// 拿到全部文章数量
+	artNum := model.QueryArticleCount(database.DB)
 
 	// 转换 id 获取关键 args
 	article := model.Article{}
@@ -88,10 +94,12 @@ func SpecificArticleGet(c *gin.Context) {
 	resp := gin.H{
 		"isLogin":        isLogin,
 		"username":       GetSession(c, "loginUser"),
+		"artNum":         artNum,
 		"article":        article,
 		"createTime":     createTime,
 		"lastUpdateTime": lastUpdateTime,
 		"contentFormat":  template.HTML(article.Content),
+		"tags":           template.HTML(article.Tags),
 	}
 	c.HTML(http.StatusOK, "specific_article.html", resp)
 }
@@ -104,6 +112,8 @@ func ArticleUpdateGet(c *gin.Context) {
 	idStr := c.Param("id")
 	// 判断登录
 	isLogin := IsSessionExist(c)
+	// 拿到全部文章数量
+	artNum := model.QueryArticleCount(database.DB)
 
 	article := model.Article{}
 	if id, err := strconv.Atoi(idStr); err == nil {
@@ -121,6 +131,7 @@ func ArticleUpdateGet(c *gin.Context) {
 	resp := gin.H{
 		"isLogin":       isLogin,
 		"username":      GetSession(c, "loginUser"),
+		"artNum":        artNum,
 		"isWrite":       true,
 		"article":       article,
 		"contentFormat": template.HTML(article.Content),
@@ -167,10 +178,14 @@ func ArticleUpdatePost(c *gin.Context) {
 
 // ArticleAddGet 写文章的页面 Get
 func ArticleAddGet(c *gin.Context) {
+	// 登录信息
 	isLogin := IsSessionExist(c)
+	// 拿到全部文章数量
+	artNum := model.QueryArticleCount(database.DB)
 	resp := gin.H{
 		"isLogin":  isLogin,
 		"username": GetSession(c, "loginUser"),
+		"artNum":   artNum,
 	}
 	c.HTML(http.StatusOK, "write.html", resp)
 }
@@ -179,15 +194,15 @@ func ArticleAddGet(c *gin.Context) {
 func ArticleAddPost(c *gin.Context) {
 	// 获取表单信息
 	title := c.PostForm("title")
+	author := GetSession(c, "loginUser").(string)
 	tags := c.PostForm("tags")
 	short := c.PostForm("short")
 	content := c.PostForm("content")
-	author := GetSession(c, "loginUser").(string)
 	createTime := time.Now().Unix()
 	lastUpdateTime := createTime
 
 	// 更新数据
-	_, err := service.AddArticleProcess(title, tags, short, content, author, createTime, lastUpdateTime)
+	_, err := service.AddArticleProcess(title, author, tags, short, content, createTime, lastUpdateTime)
 
 	// 返回数据
 	resp := gin.H{}

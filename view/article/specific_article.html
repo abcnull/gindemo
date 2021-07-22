@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>写文章</title>
 
     <!-- jq 在线压缩版 -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <!--    <script src="https://github.com/jquery-form/form/blob/master/src/jquery.form.js"></script>-->
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -26,8 +25,9 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1>{{.article.Title}}</h1>
+        <h1>{{.article.Title}} <small>作者: {{.article.Author}}</small></h1>
         <p>
+            <small>{{.tags}} </small>
             <small>创建时间: {{.createTime}} </small>
             <small>最近更新时间: {{.lastUpdateTime}}</small>
         <p/>

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>写文章</title>
 
     <!-- jq 在线压缩版 -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <!--    <script src="https://github.com/jquery-form/form/blob/master/src/jquery.form.js"></script>-->
 
     <!-- jq 自己写的前端校验逻辑 -->
     <script src="/static/js/write.js"></script>
@@ -24,7 +23,7 @@
             crossorigin="anonymous"></script>
 
     <!-- css 文件引入 -->
-    <link rel="stylesheet" href="/static/css/validate.css" >
+    <link rel="stylesheet" href="/static/css/validate.css">
 </head>
 <body style="background-color:#F5F5DC">
 
@@ -43,8 +42,13 @@
         <div class="form-group">
             <label for="tags" class="col-sm-2">标签分类：</label>
             <div class="col-sm-pull-2">
-                <input type="text" class="form-control" name="tags" id="tags" placeholder="请输入标签..."
-                       value="{{.article.Tags}}">
+                <select class="form-control" name="tags" id="tags">
+                    <option><span class="label label-warning">程序博客</span></option>
+                    <option><span class="label label-primary">金融理财</span></option>
+                    <option><span class="label label-success">自然科学</span></option>
+                    <option><span class="label label-info">音乐艺术</span></option>
+                    <option><span class="label label-danger">体育竞技</span></option>
+                </select>
             </div>
         </div>
         <div class="form-group">
