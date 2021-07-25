@@ -377,7 +377,7 @@ const CHAR_PERARTICLE = 500
 
 **`go.mod`**
 
-其中还存在 go.sum。因为采用 go module 来管理项目，所以存在`go.mod`文件，但是如果要上传 github，这个`go.mod`也是需要传的，因为相当于 java 的 pom 可以告知使用者该用哪一个具体版本
+其中还存在 go.sum。因为采用 go module 来管理项目，所以存在`go.mod`文件，但是如果要上传 github，这个`go.mod`也是需要传的，因为相当于 java 的 pom 可以告知使用者该用哪一个具体版本。使用 golang 的话建议直接创建 go module 项目，这样项目下就会直接存在`go.mod`文件，之后如果要引用什么包的时候，引用完后再`go tidy`即可。如果对于没有创建 go module 项目来说也可以通过 go mod 命令来创建`go.mod`文件
 
 **`README.md`**
 
