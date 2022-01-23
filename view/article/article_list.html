@@ -2,21 +2,19 @@
     <div class="col-md-8  col-md-push-2">
         <div class="thumbnail">
             <div class="caption">
-                <h3><a href='/article/{{.Id}}'>{{.Title}}</a></h3>
+                <h3><a href='/person/article/{{.Id}}'>{{.Title}}</a></h3>
                 <p>{{.Tags}}</p>
-                <p>作者: {{.Author}} | 最后更新时间: {{.LastUpdateTime}}</p>
-                <p><a href='/article/{{.Id}}'>{{.Content}}</a></p>
-                {{if .isLogin}}
+                <p>作者: {{.Author}} | 最后更新时间: {{.UpdatedAt}}</p>
+                <p><a href='/person/article/{{.Id}}'>{{.Content}}</a></p>
                 <div class="text-right">
                     <p>
-                        <a href='/article/update/{{.Id}}' class="btn btn-primary" role="button"><span
+                        <a href='/person/article/update/{{.Id}}' class="btn btn-primary" role="button"><span
                                 class="glyphicon glyphicon-edit"></span> 编辑</a>
-                        <a href='javascript:if(confirm("确定删除吗？")){location="/article/delete/{{.Id}}"}'
+                        <a href='javascript:if(confirm("确定删除吗？")){location="/person/article/delete/{{.Id}}"}'
                            class="btn btn-danger float-right" role="button"><span
                                 class="glyphicon glyphicon-trash"></span>   删除</a>
                     </p>
                 </div>
-                {{end}}
             </div>
         </div>
     </div>

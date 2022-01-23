@@ -7,8 +7,8 @@
                     首页
                 </a>
             </li>
-            <li role="presentation"><a href="/article"><span class="glyphicon glyphicon-file"></span> 文章 <span
-                    class="badge">{{.artNum}}</span></a></li>
+            <li role="presentation"><a href="/person/article"><span class="glyphicon glyphicon-file"></span> 文章 <span
+                    class="badge">{{.artCount}}</span></a></li>
             {{if .isLogin}}
             <li role="presentation" class="pull-right">
                 <div class="dropdown">
@@ -22,19 +22,20 @@
                         <li><a href="/aboutme"><span class="glyphicon glyphicon-heart"></span> 关于我</a></li>
                         <li role="separator" class="divider"></li>
                         <li role="presentation">
-                            <a href='javascript:if(confirm("确定退出吗？")){location="/logout"}'><span
+                            <a href='javascript:if(confirm("确定退出吗？")){location="/account/logout"}'><span
                                     class="glyphicon glyphicon-log-out"></span> 退出</a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li role="presentation" class="pull-right"><a href="/article/add"><span
+            <li role="presentation" class="pull-right"><a href="/person/article/add"><span
                     class="glyphicon glyphicon-pencil"></span> 写文章</a></li>
             {{else}}
-            <li role="presentation" class="pull-right"><a href="/register"><span
-                    class="glyphicon glyphicon-new-window"></span> 管理者注册</a></li>
-            <li role="presentation" class="pull-right"><a href="/login"><span class="glyphicon glyphicon-log-in"></span>
-                管理者登录</a></li>
+            <li role="presentation" class="pull-right"><a href="/account/register"><span
+                    class="glyphicon glyphicon-new-window"></span> 用户注册</a></li>
+            <li role="presentation" class="pull-right"><a href="/account/login"><span
+                    class="glyphicon glyphicon-log-in"></span>
+                用户登录</a></li>
             {{end}}
         </ul>
     </div>

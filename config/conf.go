@@ -2,6 +2,9 @@ package config
 
 /*----------- 数据库 ------------*/
 
+// DB_DRIVER 数据库驱动
+const DB_DRIVER = "mysql"
+
 // DB_ADD 数据库地址
 const DB_ADD = "localhost"
 
@@ -17,6 +20,9 @@ const DB_USER = "root"
 // DB_PWD 数据库密码
 const DB_PWD = "123456"
 
+// DB_CHARSET 数据库字符集
+const DB_CHARSET = "utf8mb4"
+
 /*----------- 文章分类 ------------*/
 
 // PROGRAM 文章分类-程序博客
@@ -29,7 +35,7 @@ const FINANCE = "金融理财"
 const SCIENCE = "自然科学"
 
 // ART 文章分类-音乐艺术
-const ART= "音乐艺术"
+const ART = "音乐艺术"
 
 // SPORT 文章分类-体育竞技
 const SPORT = "体育竞技"
